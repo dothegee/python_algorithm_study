@@ -38,6 +38,28 @@ for i in range(a,b+1):
         print(f"{i} + ", end="")
     else:
         print(f"{i} = ", end="")
-    sum += i
+sum += i
 
 print(sum)
+
+#실습 1-11
+#a부터 b까지 정수의 합 구하기 2
+
+print('a부터 b까지 정수의 합을 구합니다. ')
+a = int(input('정수 a를 입력하세요.: '))
+b = int(input("정수 b를 입력하세요.: "))
+
+if a > b:
+    a, b = b, a
+
+sum = 0
+for i in range(a, b):
+    print(f"{i} + ", end="")
+    sum+=i
+
+print(f"{b} = ", end = "")
+
+sum+=b
+print(sum)
+
+#1-10에서 1-11로 바꾸는 과정에서 조건식 판단횟수가 n번에서 0번으로 바뀌었고, 심지어 반복횟수도 1번 감소!!!!!!!!!!!!
