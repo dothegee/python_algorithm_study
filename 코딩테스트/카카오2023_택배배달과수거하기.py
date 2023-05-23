@@ -69,7 +69,6 @@ def solution(cap, n, deliveries, pickups):
         print(f"{i}번째에서 확인")
         print(f"변화전 deliveries : {deliveries}\n변화전 pickups : {pickups}")
         if (dv+deliveries[i]>cap) or (bv+pickups[i]>cap):
-            
             dv=dv+deliveries[i]-cap
             bv=bv+pickups[i]-cap
             if dv<0:
@@ -91,17 +90,32 @@ def solution(cap, n, deliveries, pickups):
         print(f"적재용량{dv}\n올때용량{bv}")
         print(deliveries)
         print(pickups)
-    
     if num != []:
         dis += 2*(max(num)+1)
         print("hihihihi")
     print(f"적재용량{dv}\n올때용량{bv}")
     print(deliveries)
     print(pickups)
-            
-        
     answer = dis
     return answer
 
-print(solution(4,5,[1,0,3,1,2],[0,3,0,4,0]))
-print(solution(2,7,[1,0,2,0,1,0,2],[0,2,0,1,0,2,0]))
+
+def solution2(cap, n, deliveries, pickups):
+    answer=0
+    dv=0
+    pv=0
+
+    for i in range(n-1,-1,-1):
+        dv+=deliveries[i]
+        pv+=pickups[i]
+        while dv>0 or pv>0:
+            dv-=cap
+            pv-=cap
+            answer += (i+1)*2
+    return answer
+
+# print(solution(4,5,[1,0,3,1,2],[0,3,0,4,0]))
+# print(solution(2,7,[1,0,2,0,1,0,2],[0,2,0,1,0,2,0]))
+
+print(solution2(4,5,[1,0,3,1,2],[0,3,0,4,0]))
+print(solution2(2,7,[1,0,2,0,1,0,2],[0,2,0,1,0,2,0]))
