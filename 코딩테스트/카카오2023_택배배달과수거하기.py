@@ -70,43 +70,19 @@ def solution(cap, n, deliveries, pickups):
         print(f"변화전 deliveries : {deliveries}\n변화전 pickups : {pickups}")
         if (dv+deliveries[i]>cap) or (bv+pickups[i]>cap):
             
-            dv=0
-            bv=0
-            # if dv<0:
-            #     dv=0
-                
-            #     num.append(i)
-            # if bv<0:
-            #     bv=0
-                
-            #     num.append(i)
+            dv=dv+deliveries[i]-cap
+            bv=bv+pickups[i]-cap
+            if dv<0:
+                dv=0
+            if bv<0:
+                bv=0
             dis+=2*(max(num)+1)
             num=[]
             print(f"거리 합 {dis}")
-
-        # if (dv+deliveries[i]>cap) or (bv+pickups[i]>cap):
-        #     if (dv+deliveries[i]>cap):
-        #         dv=dv+deliveries[i]-cap
-        #     else:
-        #         dv=0
-        #     if (bv+pickups[i]>cap):
-        #         bv=bv+pickups[i]-cap
-        #     else:
-        #         bv=0
-        #     dis+=2*(max(num)+1)
-        #     num=[]
-        #     num.append(i)
-        #     print(f"거리 합 {dis}")    
-
-        # if (dv+deliveries[i]>=cap) or (bv+pickups[i]>=cap):
-        #     dis+=2*(max(num)+1)
-        #     num=[]
-        #     if dv+deliveries[i]>cap:
-        #         dv=dv+deliveries[i]-cap
-        #         num.append(i)
-        #     if bv+pickups[i]>cap:
-        #         bv=bv+pickups[i]-cap
-        #         num.append(i)
+            num.append(i)
+            deliveries[i]=0
+            pickups[i]=0
+            pass    
         bv+=pickups[i]
         pickups[i]=0
         dv+=deliveries[i]
@@ -115,9 +91,10 @@ def solution(cap, n, deliveries, pickups):
         print(f"적재용량{dv}\n올때용량{bv}")
         print(deliveries)
         print(pickups)
-
+    
     if num != []:
         dis += 2*(max(num)+1)
+        print("hihihihi")
     print(f"적재용량{dv}\n올때용량{bv}")
     print(deliveries)
     print(pickups)
