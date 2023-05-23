@@ -153,3 +153,36 @@
 
 # 따라서 "RCJA"를 return 해야 합니다.
 
+def solution(survey, choices):
+    
+    answer = ''
+    character = {'R':0,'T':0,'C':0,'F':0,'J':0,'M':0,'A':0,'N':0}
+    for i in range(len(survey)):
+        score = choices[i]-4
+        if score>0:
+            character[survey[i][1]]+=score
+        else:
+            character[survey[i][0]]+=abs(score)
+    SB=0
+    print(character)
+    while SB<8:
+        key = list(character.keys())
+        
+        if character[key[SB]]>=character[key[SB+1]]:
+            answer += key[SB]
+        else :
+            answer += key[SB+1]
+        SB+=2
+        
+    print(f"answer : {answer}")
+    
+    return answer
+
+
+survery = ["AN", "CF", "MJ", "RT", "NA"]
+choices = [5, 3, 2, 7, 5]	
+survery1 = ["TR", "RT", "TR"]
+choices1 = 	[7, 1, 3]
+
+solution(survery,choices)
+solution(survery1,choices1)
