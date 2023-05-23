@@ -64,25 +64,67 @@ def solution(cap, n, deliveries, pickups):
     num=[]
     dis=0 
     for i in range(n-1,-1,-1):
+        print(num)
         #출발
+        print(f"{i}번째에서 확인")
+        print(f"변화전 deliveries : {deliveries}\n변화전 pickups : {pickups}")
         if (dv+deliveries[i]>cap) or (bv+pickups[i]>cap):
+            
             dv=0
             bv=0
-            dis+=2*(max(num))
+            # if dv<0:
+            #     dv=0
+                
+            #     num.append(i)
+            # if bv<0:
+            #     bv=0
+                
+            #     num.append(i)
+            dis+=2*(max(num)+1)
             num=[]
-            
-        else:
-            bv+=pickups[i]
-            pickups[i]=0
-            dv+=deliveries[i]
-            deliveries[i]=0
-            num.append(i)
+            print(f"거리 합 {dis}")
+
+        # if (dv+deliveries[i]>cap) or (bv+pickups[i]>cap):
+        #     if (dv+deliveries[i]>cap):
+        #         dv=dv+deliveries[i]-cap
+        #     else:
+        #         dv=0
+        #     if (bv+pickups[i]>cap):
+        #         bv=bv+pickups[i]-cap
+        #     else:
+        #         bv=0
+        #     dis+=2*(max(num)+1)
+        #     num=[]
+        #     num.append(i)
+        #     print(f"거리 합 {dis}")    
+
+        # if (dv+deliveries[i]>=cap) or (bv+pickups[i]>=cap):
+        #     dis+=2*(max(num)+1)
+        #     num=[]
+        #     if dv+deliveries[i]>cap:
+        #         dv=dv+deliveries[i]-cap
+        #         num.append(i)
+        #     if bv+pickups[i]>cap:
+        #         bv=bv+pickups[i]-cap
+        #         num.append(i)
+        bv+=pickups[i]
+        pickups[i]=0
+        dv+=deliveries[i]
+        deliveries[i]=0
+        num.append(i)
+        print(f"적재용량{dv}\n올때용량{bv}")
+        print(deliveries)
+        print(pickups)
+
     if num != []:
-        dis += 2*(max(num))
-        
+        dis += 2*(max(num)+1)
+    print(f"적재용량{dv}\n올때용량{bv}")
+    print(deliveries)
+    print(pickups)
             
         
     answer = dis
     return answer
 
-print(solution(2,7,[1,0,2,0,1,0,2],[0, 2, 0, 1, 0, 2, 0]))
+print(solution(4,5,[1,0,3,1,2],[0,3,0,4,0]))
+print(solution(2,7,[1,0,2,0,1,0,2],[0,2,0,1,0,2,0]))
